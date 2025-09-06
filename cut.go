@@ -7,9 +7,10 @@ import (
 	"io"
 	"strings"
 
-	localopt "github.com/yupsh/cut/opt"
 	yup "github.com/yupsh/framework"
 	"github.com/yupsh/framework/opt"
+
+	localopt "github.com/yupsh/cut/opt"
 )
 
 // Flags represents the configuration options for the cut command
