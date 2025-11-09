@@ -3,22 +3,22 @@ package command
 import (
 	"strings"
 
-	yup "github.com/gloo-foo/framework"
+	gloo "github.com/gloo-foo/framework"
 )
 
-type command yup.Inputs[yup.File, flags]
+type command gloo.Inputs[gloo.File, flags]
 
-func Cut(parameters ...any) yup.Command {
-	cmd := command(yup.Initialize[yup.File, flags](parameters...))
+func Cut(parameters ...any) gloo.Command {
+	cmd := command(gloo.Initialize[gloo.File, flags](parameters...))
 	if cmd.Flags.Delimiter == "" {
 		cmd.Flags.Delimiter = "\t"
 	}
 	return cmd
 }
 
-func (p command) Executor() yup.CommandExecutor {
-	return yup.Inputs[yup.File, flags](p).Wrap(
-		yup.LineTransform(func(line string) (string, bool) {
+func (p command) Executor() gloo.CommandExecutor {
+	return gloo.Inputs[gloo.File, flags](p).Wrap(
+		gloo.LineTransform(func(line string) (string, bool) {
 		// Handle fields mode
 		if len(p.Flags.Fields) > 0 {
 			delim := string(p.Flags.Delimiter)
